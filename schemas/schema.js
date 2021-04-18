@@ -13,6 +13,23 @@ export default createSchema({
   types: schemaTypes.concat([
     /* Your types here! */
     {
+      name: 'author',
+      type: 'document',
+      title: 'Author',
+      fields:[
+        {
+          name: 'name',
+          title: 'Name',
+          type: 'string'
+        },
+        {
+          name: 'avatar',
+          title: 'Avatar',
+          type: 'image'
+        }
+      ]
+    },
+    {
       name: 'blog',
       type: 'document',
       title: 'BLOG',
@@ -20,7 +37,8 @@ export default createSchema({
         {
           name: 'title',
           type: 'string',
-          title: 'Title'
+          title: 'Title',
+          validation: (Rule)=> {return Rule.required().min(10)}
         },
         {
           name: 'subtitle',
@@ -28,10 +46,51 @@ export default createSchema({
           title: 'Subtitle'
         },
         {
+          name: 'coverImage',
+          title: 'Cover Image',
+          type:'image'
+        },
+        {
+          name: 'date',
+          title: 'Date',
+          type: 'datetime',
+          validation: Rule => Rule.required()
+        },
+        {
+          name: 'author',
+          title: 'Author',
+          type: 'reference',
+          to:[{type:'author'}],
+          validation: Rule => Rule.required()
+        },
+        {
           name:'slug',
           type: 'slug',
-          title: 'Slug'
+          title: 'Slug',
+          validation: Rule => Rule.required()
         }
+      ]
+    },
+    {
+      name: 'albums',
+      type: 'document',
+      title: 'Albums',
+      fields: [
+        {
+          name: 'band',
+          type: 'string',
+          title: 'Band'
+        },
+        {
+          name: 'album',
+          type: 'string',
+          title: 'Album'
+        },
+        {
+          name: 'year',
+          type: 'number',
+          title: 'Year'
+        },
       ]
     }
   ]),
