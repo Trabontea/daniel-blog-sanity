@@ -38,7 +38,7 @@ export default createSchema({
           name: 'title',
           type: 'string',
           title: 'Title',
-          validation: (Rule)=> {return Rule.required().min(10)}
+          validation: (Rule)=> {return Rule.required().min(3)}
         },
         {
           name: 'subtitle',
