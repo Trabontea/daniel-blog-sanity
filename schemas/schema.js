@@ -29,6 +29,7 @@ export default createSchema({
         }
       ]
     },
+      /* BLOG */
     {
       name: 'blog',
       type: 'document',
@@ -44,6 +45,11 @@ export default createSchema({
           name: 'subtitle',
           type: 'string',
           title: 'Subtitle'
+        },
+        {
+          name: 'category',
+          type: 'string',
+          title: 'Category'
         },
         {
           name: 'coverImage',
