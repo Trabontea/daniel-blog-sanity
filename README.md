@@ -9,4 +9,9 @@ Now you can do the following things:
 - [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
 
 # Start
+
 sanity start
+
+# Probleme de npm
+
+npm install --legacy-peer-deps
