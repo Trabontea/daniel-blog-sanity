@@ -29,10 +29,28 @@ export default createSchema({
         }
       ]
     },
+    {
+      name: 'category',
+      type: 'document',
+      title: 'Category',
+      fields: [
+        {
+          name: 'name',
+          type: 'string',
+          title: 'Name',
+        },
+        {
+          name:'slug',
+          type: 'slug',
+          title: 'Slug',
+          validation: Rule => Rule.required()
+        }
+      ]
+    },
       /* BLOG */
     {
       name: 'blog',
-      type: 'document',
+      type: 'object',
       title: 'BLOG',
       fields:[
         {
@@ -48,8 +66,19 @@ export default createSchema({
         },
         {
           name: 'category',
+          type: 'reference',
+          title: 'Category',
+          to:[{type:'category'}],
+          // options: {
+          //   filter: 'category == $category',
+          //   filterParams: {category: 'category'}
+          // },
+          validation: Rule => Rule.required()
+        },
+        {
+          name: 'year',
           type: 'string',
-          title: 'Category'
+          title: 'Year'
         },
         {
           name: 'coverImage',
@@ -134,27 +163,40 @@ export default createSchema({
         }
       ]
     },
+    // {
+    //   name: 'album',
+    //   type: 'document',
+    //   title: 'Album',
+    //   fields: [
+    //     {
+    //       name: 'band',
+    //       type: 'string',
+    //       title: 'Band'
+    //     },
+    //     {
+    //       name: 'album',
+    //       type: 'string',
+    //       title: 'Album'
+    //     },
+    //     {
+    //       name: 'year',
+    //       type: 'number',
+    //       title: 'Year'
+    //     },
+    //   ]
+    // },
     {
-      name: 'albums',
+      name: 'band',
       type: 'document',
-      title: 'Albums',
+      title: 'Band',
       fields: [
         {
-          name: 'band',
+          name: 'name',
           type: 'string',
-          title: 'Band'
-        },
-        {
-          name: 'album',
-          type: 'string',
-          title: 'Album'
-        },
-        {
-          name: 'year',
-          type: 'number',
-          title: 'Year'
-        },
+          title: 'Name'
+        }
       ]
-    }
+    },
+
   ]),
 })
