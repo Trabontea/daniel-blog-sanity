@@ -48,9 +48,33 @@ export default createSchema({
       ],
     },
     {
+      name: "band",
+      type: "document",
+      title: "Band",
+      fields: [
+        {
+          name: "name",
+          type: "string",
+          title: "Name",
+        },
+      ],
+    },
+    {
+      name: "Label",
+      type: "document",
+      title: "Label",
+      fields: [
+        {
+          name: "name",
+          type: "string",
+          title: "Name",
+        },
+      ],
+    },
+    {
       name: "blog",
-      type: "object",
-      title: "BLOG",
+      type: "document",
+      title: "Blog",
       fields: [
         {
           name: "title",
@@ -70,16 +94,22 @@ export default createSchema({
           type: "reference",
           title: "Category",
           to: [{ type: "category" }],
-          // options: {
-          //   filter: 'category == $category',
-          //   filterParams: {category: 'category'}
-          // },
+          options: {
+            filter: "category == $category",
+            filterParams: { category: "category" },
+          },
           validation: (Rule) => Rule.required(),
         },
         {
           name: "year",
           type: "string",
           title: "Year",
+        },
+        {
+          name: "bandname",
+          type: "reference",
+          title: "Band",
+          to: [{ type: "band" }],
         },
         {
           name: "coverImage",
@@ -161,18 +191,6 @@ export default createSchema({
           type: "slug",
           title: "Slug",
           validation: (Rule) => Rule.required(),
-        },
-      ],
-    },
-    {
-      name: "band",
-      type: "document",
-      title: "Band",
-      fields: [
-        {
-          name: "name",
-          type: "string",
-          title: "Name",
         },
       ],
     },
